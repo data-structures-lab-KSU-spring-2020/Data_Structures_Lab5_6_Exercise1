@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Travis
-Date                   :=16/02/2020
+Date                   :=25/02/2020
 CodeLitePath           :="C:/Program Files/CodeLite"
 LinkerName             :=C:/MinGW/bin/g++.exe
 SharedObjectLinkerName :=C:/MinGW/bin/g++.exe -shared -fPIC
@@ -62,7 +62,7 @@ AS       := C:/MinGW/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/node1.cpp$(ObjectSuffix) $(IntermediateDirectory)/sequence_exam3.cpp$(ObjectSuffix) $(IntermediateDirectory)/sequence3.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/sequence3.cpp$(ObjectSuffix) $(IntermediateDirectory)/sequence_exam3.cpp$(ObjectSuffix) $(IntermediateDirectory)/node1.cpp$(ObjectSuffix) 
 
 
 
@@ -93,13 +93,13 @@ PreBuild:
 ##
 ## Objects
 ##
-$(IntermediateDirectory)/node1.cpp$(ObjectSuffix): node1.cpp $(IntermediateDirectory)/node1.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Travis/Documents/School/2020_Spring/Data_Structures_Lab/Data_Structures_Lab_Workspace/data_structures_lab/lab5_6_exercise1/node1.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/node1.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/node1.cpp$(DependSuffix): node1.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/node1.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/node1.cpp$(DependSuffix) -MM node1.cpp
+$(IntermediateDirectory)/sequence3.cpp$(ObjectSuffix): sequence3.cpp $(IntermediateDirectory)/sequence3.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Travis/Documents/School/2020_Spring/Data_Structures_Lab/Data_Structures_Lab_Workspace/data_structures_lab/lab5_6_exercise1/sequence3.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/sequence3.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/sequence3.cpp$(DependSuffix): sequence3.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/sequence3.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/sequence3.cpp$(DependSuffix) -MM sequence3.cpp
 
-$(IntermediateDirectory)/node1.cpp$(PreprocessSuffix): node1.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/node1.cpp$(PreprocessSuffix) node1.cpp
+$(IntermediateDirectory)/sequence3.cpp$(PreprocessSuffix): sequence3.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/sequence3.cpp$(PreprocessSuffix) sequence3.cpp
 
 $(IntermediateDirectory)/sequence_exam3.cpp$(ObjectSuffix): sequence_exam3.cpp $(IntermediateDirectory)/sequence_exam3.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Travis/Documents/School/2020_Spring/Data_Structures_Lab/Data_Structures_Lab_Workspace/data_structures_lab/lab5_6_exercise1/sequence_exam3.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/sequence_exam3.cpp$(ObjectSuffix) $(IncludePath)
@@ -109,13 +109,13 @@ $(IntermediateDirectory)/sequence_exam3.cpp$(DependSuffix): sequence_exam3.cpp
 $(IntermediateDirectory)/sequence_exam3.cpp$(PreprocessSuffix): sequence_exam3.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/sequence_exam3.cpp$(PreprocessSuffix) sequence_exam3.cpp
 
-$(IntermediateDirectory)/sequence3.cpp$(ObjectSuffix): sequence3.cpp $(IntermediateDirectory)/sequence3.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Travis/Documents/School/2020_Spring/Data_Structures_Lab/Data_Structures_Lab_Workspace/data_structures_lab/lab5_6_exercise1/sequence3.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/sequence3.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/sequence3.cpp$(DependSuffix): sequence3.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/sequence3.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/sequence3.cpp$(DependSuffix) -MM sequence3.cpp
+$(IntermediateDirectory)/node1.cpp$(ObjectSuffix): node1.cpp $(IntermediateDirectory)/node1.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Travis/Documents/School/2020_Spring/Data_Structures_Lab/Data_Structures_Lab_Workspace/data_structures_lab/lab5_6_exercise1/node1.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/node1.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/node1.cpp$(DependSuffix): node1.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/node1.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/node1.cpp$(DependSuffix) -MM node1.cpp
 
-$(IntermediateDirectory)/sequence3.cpp$(PreprocessSuffix): sequence3.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/sequence3.cpp$(PreprocessSuffix) sequence3.cpp
+$(IntermediateDirectory)/node1.cpp$(PreprocessSuffix): node1.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/node1.cpp$(PreprocessSuffix) node1.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

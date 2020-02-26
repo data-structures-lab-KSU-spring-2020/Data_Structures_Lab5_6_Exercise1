@@ -17,10 +17,37 @@ sequence::sequence( ) {
 
 sequence::sequence(const sequence& source){
 	list_copy(source.head_ptr, head_ptr, tail_ptr);
+	if (head_ptr == NULL && tail_ptr == NULL) {
+		cursor = NULL;
+		precursor = NULL;
+	} 
+	else if (source.precursor == source.tail_ptr){
+		cursor = NULL;
+		precursor = tail_ptr;
+	}
+	else if (source.precursor == NULL && source.cursor == source.head_ptr){
+		precursor = NULL;
+		cursor = head_ptr;
+	}
+	else {
+		node * temp_cursor = source.head_ptr;
+		node * temp_precursor = NULL;
+		int count = 0;
+		while (temp_cursor != source.cursor){
+			count ++;
+			temp_precursor = temp_cursor;
+			temp_cursor = temp_cursor -> link();
+		}
+		temp_precursor = head_ptr;
+		for (int i = 0; i < count - 1; i++ ) {
+			temp_precursor = temp_precursor -> link();
+		}
+		precursor = temp_precursor;
+		cursor = temp_precursor -> link();
+	}
 	many_nodes = source.many_nodes;
-	precursor = NULL;
-	cursor = head_ptr;
 }
+	
 
 sequence::~sequence( ) {
 	list_clear(head_ptr);
@@ -29,95 +56,140 @@ sequence::~sequence( ) {
 
 // MODIFICATION MEMBER FUNCTIONS
 void sequence::start( ) {
-	if (is_item()){
-		cursor = head_ptr;
-	}
+	cursor = head_ptr;
+	precursor = NULL;
 }
 
 void sequence::advance( ) {
-	try {
-		assert(is_item());
+	if (is_item()){
+		if (cursor == tail_ptr){
+			precursor = cursor;
+			cursor = NULL;
+		} else if (cursor == NULL && precursor == tail_ptr) {
+			cursor = head_ptr;
+			precursor = NULL;
+		} else {
+			precursor = cursor;
+			cursor = cursor -> link();
+		}
 	}
-	catch (int e){
-		cout << "Error with advance function" << endl;
-	}
-	precursor = cursor;
-	cursor = cursor -> link();
 }
 
 void sequence::insert(const value_type& entry) {
-	if (!is_item()){
-		list_head_insert(head_ptr, entry);
-		cursor = head_ptr;
-		tail_ptr = head_ptr;
-		many_nodes ++;
+	if (cursor == NULL){
+		if (head_ptr == NULL) {
+			list_head_insert(head_ptr, entry);
+			cursor = head_ptr;
+			precursor = NULL;
+			tail_ptr = head_ptr;
+		} else {
+			list_head_insert(head_ptr, entry);
+			cursor = head_ptr;
+			precursor = NULL;
+		}
+	} else if (cursor == head_ptr) {
+			list_head_insert(head_ptr, entry);
+			cursor = head_ptr;
+			precursor = NULL;
+			
+	} else {
+		list_insert(precursor, entry);
+		cursor = precursor -> link();
 	}
-	else {
-		node *temp = new node(entry, cursor);
-		precursor -> set_link(temp);
-		cursor = temp;
-		delete [] temp;
-		many_nodes ++;
-	}
+	many_nodes++;
 }
 
 void sequence::attach(const value_type& entry) {
-	if (is_item()){
-		if (cursor != tail_ptr){
-			list_insert(precursor, entry);
-			precursor = cursor;
-			cursor = cursor -> link();
-		}
-		else {
-			list_insert(tail_ptr, entry);
-			precursor = cursor;
-			cursor = cursor -> link();
-			tail_ptr = tail_ptr -> link();
-		}
-	}
-	if (!is_item()){
-		if (head_ptr == NULL){
+	if (cursor == NULL) {
+		if (head_ptr == NULL) {
 			list_head_insert(head_ptr, entry);
 			cursor = head_ptr;
-			tail_ptr = head_ptr;
 			precursor = NULL;
-		}
-		else if (tail_ptr == NULL){
-			precursor = list_locate(head_ptr, list_length(head_ptr));
-			list_insert(precursor, entry);
-			cursor = precursor -> link();
-			tail_ptr = cursor;
-		}
-		else {
+			tail_ptr = head_ptr;
+		} else {
 			list_insert(tail_ptr, entry);
 			precursor = tail_ptr;
-			cursor = precursor -> link();
 			tail_ptr = tail_ptr -> link();
+			cursor = tail_ptr;
 		}
+	} else if (cursor == tail_ptr) {
+			list_insert(tail_ptr, entry);
+			precursor = tail_ptr;
+			cursor = cursor -> link();
+			tail_ptr = tail_ptr -> link();
+			
+	} else {
+		list_insert(cursor, entry);
+		precursor = cursor;
+		cursor = cursor -> link();
 	}
-	many_nodes ++;
+	many_nodes++;
+/*	node * test = head_ptr;
+	cout << "*********************   "; 
+	while (test != NULL){
+		cout << test->data() << ", "; 
+		test = test -> link();
+	}
+	cout << "   *********************"; */
 }
 
 void sequence::operator =(const sequence& source) {
-	if (!is_item()){
-		head_ptr = NULL;
-		tail_ptr = NULL;
+	if (head_ptr == source.head_ptr) {
+		return;
+	}
+	list_copy(source.head_ptr, head_ptr, tail_ptr);
+	if (head_ptr == NULL && tail_ptr == NULL) {
 		cursor = NULL;
 		precursor = NULL;
-		many_nodes = 0;
+	} 
+	else if (source.precursor == source.tail_ptr){
+		cursor = NULL;
+		precursor = tail_ptr;
+	}
+	else if (source.precursor == NULL && source.cursor == source.head_ptr){
+		precursor = NULL;
+		cursor = head_ptr;
 	}
 	else {
-		list_copy(source.head_ptr, head_ptr, tail_ptr);
-		cursor = head_ptr;
-		many_nodes = source.many_nodes;
+		node * temp_cursor = source.head_ptr;
+		node * temp_precursor = NULL;
+		int count = 0;
+		while (temp_cursor != source.cursor){
+			count ++;
+			temp_precursor = temp_cursor;
+			temp_cursor = temp_cursor -> link();
+		}
+		temp_precursor = head_ptr;
+		for (int i = 0; i < count - 1; i++ ) {
+			temp_precursor = temp_precursor -> link();
+		}
+		precursor = temp_precursor;
+		cursor = temp_precursor -> link();
 	}
+	many_nodes = source.many_nodes;
 }
 
+
 void sequence::remove_current( ) {
-	precursor -> set_link(cursor -> link());
-	cursor = precursor -> link();
-	many_nodes --;
+	if (head_ptr == NULL || !is_item()) {
+		return;
+	} else if (head_ptr == tail_ptr){
+		head_ptr = NULL;
+		cursor = NULL;
+	} else if (precursor == NULL){
+		head_ptr = cursor -> link();
+		cursor = head_ptr;
+	} else if (cursor == tail_ptr){
+		precursor -> set_link(cursor -> link());
+		cursor = NULL;
+		tail_ptr = precursor;
+	} else {
+		precursor -> set_link(cursor -> link());
+		cursor = precursor -> link();
+	}
+	many_nodes--;
 }
+
 
 // CONSTANT MEMBER FUNCTIONS
 
