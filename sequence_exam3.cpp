@@ -1,3 +1,8 @@
+// Travis Hescox
+// CS3305L
+// Section 2
+// Lab Assignment 5
+
 // FILE: sequence_exam3.cxx
 // Written by: Michael Main (main@colorado.edu) - Oct 31, 1997
 // Non-interactive test program for the sequence class using a linked sequence

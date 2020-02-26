@@ -1,3 +1,8 @@
+// Travis Hescox
+// CS3305L
+// Section 2
+// Lab Assignment 5
+
 // FILE: sequence3.h
 // CLASS PROVIDED: sequence (part of the namespace main_savitch_5)
 // This is the header file for the project described in Section 5.4

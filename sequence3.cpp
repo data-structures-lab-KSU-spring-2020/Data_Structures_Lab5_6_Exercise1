@@ -1,3 +1,8 @@
+// Travis Hescox
+// CS3305L
+// Section 2
+// Lab Assignment 5
+
 #include <iostream>     // Provides cout.
 #include <cstdlib>      // Provides size_t.
 #include "sequence3.h"  // Provides the sequence class with double items.

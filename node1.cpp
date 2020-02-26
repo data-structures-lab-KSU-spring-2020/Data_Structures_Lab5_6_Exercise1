@@ -1,3 +1,9 @@
+// Travis Hescox
+// CS3305L
+// Section 2
+// Lab Assignment 5
+
+
 // FILE: node1.cxx
 // IMPLEMENTS: The functions of the node class and the
 // linked list toolkit (see node1.h for documentation).
